@@ -39,8 +39,8 @@ export default class Entry extends Component {
   };
 
   render() {
-    const { theme = {}, mention, searchValue, isFocused } = this.props;
-    const className = isFocused ? theme.mentionSuggestionsEntryFocused : theme.mentionSuggestionsEntry;
+    const { theme = {}, mention, searchValue, isfocused } = this.props;
+    const className = isfocused ? theme.mentionSuggestionsEntryFocused : theme.mentionSuggestionsEntry;
     const EntryComponent = this.props.entryComponent;
     return (
       <EntryComponent
@@ -51,7 +51,7 @@ export default class Entry extends Component {
         role="option"
         theme={theme}
         mention={mention}
-        isFocused={isFocused}
+        isfocused={isfocused}
         searchValue={searchValue}
       />
     );

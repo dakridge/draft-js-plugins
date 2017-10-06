@@ -356,7 +356,7 @@ export class MentionSuggestions extends Component {
           key={mention.has('id') ? mention.get('id') : mention.get('name')}
           onMentionSelect={this.onMentionSelect}
           onMentionFocus={this.onMentionFocus}
-          isFocused={this.state.focusedOptionIndex === index}
+          isfocused={this.state.focusedOptionIndex === index}
           mention={mention}
           index={index}
           id={`mention-option-${this.key}-${index}`}
