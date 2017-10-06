@@ -46,7 +46,7 @@ export default class MentionSuggestionsPortal extends Component {
   render() {
     return (
       <span
-        className={this.key}
+        className={ "mention-span-block" }
         ref={this.searchPortalRef}
       >
         {this.props.children}
