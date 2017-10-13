@@ -51,7 +51,7 @@ export default class Entry extends Component {
         role="option"
         theme={theme}
         mention={mention}
-        isfocused={isfocused}
+        isFocused={isfocused}
         searchValue={searchValue}
       />
     );
