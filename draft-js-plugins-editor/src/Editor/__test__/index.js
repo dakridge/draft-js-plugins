@@ -15,6 +15,12 @@ class TestEditor extends Component {
     this.state.editorState = createEditorStateWithText(this.props.text);
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({
+      editorState: createEditorStateWithText(props.text),
+    });
+  }
+
   onChange = (editorState) => {
     this.setState({
       editorState,
@@ -501,7 +507,7 @@ describe('Editor', () => {
       expect(pluginEditor.resolveblockRenderMap()).to.deep.equal(expected);
     });
 
-    it.skip('returns the component reference when we call the getEditorRef inside of a plugin', () => {
+    it('returns the component reference when we call the getEditorRef inside of a plugin', () => {
       const spy = sinon.spy();
       const plugins = [{
         onChange: (state, pluginFunctions) => spy(pluginFunctions.getEditorRef())
@@ -630,7 +636,7 @@ describe('Editor', () => {
       decorators = [decorator];
     });
 
-    it.skip('uses strategies from both decorators and plugins together', () => {
+    it('uses strategies from both decorators and plugins together', () => {
       const pluginStrategy = sinon.spy(plugin.decorators[0], 'strategy');
       const decoratorStrategy = sinon.spy(decorator, 'strategy');
 
@@ -640,13 +646,13 @@ describe('Editor', () => {
       expect(pluginStrategy).has.been.called();
     });
 
-    it.skip('uses components from both decorators and plugins together', () => {
+    it('uses components from both decorators and plugins together', () => {
       const pluginComponent = sinon.spy(plugin.decorators[0], 'component');
       const decoratorComponent = sinon.spy(decorator, 'component');
 
       const wrapper = mount(<TestEditor {...{ plugins, decorators, text }} />);
-      const decoratorComponents = wrapper.findWhere((n) => n.hasClass('decorator'));
-      const pluginComponents = wrapper.findWhere((n) => n.hasClass('plugin'));
+      const decoratorComponents = wrapper.find('.decorator');
+      const pluginComponents = wrapper.find('.plugin');
 
       expect(decoratorComponent).has.been.called();
       expect(pluginComponent).has.been.called();
@@ -654,7 +660,7 @@ describe('Editor', () => {
       expect(pluginComponents.length).to.equal(1);
     });
 
-    it.skip('uses both custom and simple decorators in plugins', () => {
+    it('uses both custom and simple decorators in plugins', () => {
       const simplePluginDecoratorStrategy = sinon.spy(plugin.decorators[0], 'strategy');
       const customPluginDecorator = sinon.spy(plugin.decorators[1], 'getDecorations');
       const decoratorStrategy = sinon.spy(decorator, 'strategy');
@@ -664,6 +670,21 @@ describe('Editor', () => {
       expect(simplePluginDecoratorStrategy).has.been.called();
       expect(customPluginDecorator).has.been.called();
       expect(decoratorStrategy).has.been.called();
+    });
+
+    it('reassigns decorators to editorState when props are updated with naked editorState', (done) => {
+      const props = { plugins, text };
+      const comp = mount(<TestEditor {...props} />);
+
+      const decoratorNumber = comp.state('editorState').getDecorator().decorators.size;
+
+      setTimeout(() => {
+        const newText = 'Yoyoyoyo dude';
+        comp.setProps({ text: newText });
+        expect(comp.state('editorState').getDecorator().decorators.size).to.eq(decoratorNumber);
+        expect(comp.state('editorState').getCurrentContent().getPlainText()).to.eq(newText);
+        done();
+      }, 100);
     });
   });
 });

@@ -1,5 +1,3 @@
-Note: this guide already focuses on version 2 (currently in beta) of the DraftJS Plugins architecture.
-
 -----
 
 # Basics
@@ -46,7 +44,7 @@ export default createCustomPlugin = (config) => {
 
 # Supported Objects & Hooks
 
-A plugin accepts all standard props the Draft.js Editor Component uses.
+A plugin accepts all standard props the Draft.js Editor Component uses. [See details on Draft.js docs](https://draftjs.org/docs/api-reference-editor.html#content). Commonly used props:
 
 - [blockRendererFn](https://facebook.github.io/draft-js/docs/api-reference-editor.html#blockrendererfn)
 - [keyBindingFn](https://draftjs.org/docs/advanced-topics-key-bindings.html)
@@ -63,7 +61,11 @@ A plugin accepts all standard props the Draft.js Editor Component uses.
 - [onEscape](https://facebook.github.io/draft-js/docs/api-reference-editor.html#onescape)
 - [onTab](https://facebook.github.io/draft-js/docs/api-reference-editor.html#ontab)
 - [onUpArrow](https://facebook.github.io/draft-js/docs/api-reference-editor.html#onuparrow)
+- [onRightArrow](https://draftjs.org/docs/api-reference-editor.html#onrightarrow)
 - [onDownArrow](https://facebook.github.io/draft-js/docs/api-reference-editor.html#ondownarrow)
+- [onLeftArrow](https://draftjs.org/docs/api-reference-editor.html#onleftarrow)
+- [onFocus](https://draftjs.org/docs/api-reference-editor.html#onfocus)
+- [onBlur](https://draftjs.org/docs/api-reference-editor.html#onblur)
 
 There is one difference compared to the original properties.
 All functions receive an additional argument. This argument is an object containing:
@@ -85,7 +87,7 @@ In addition the a plugin accepts
 
 - `initialize: (PluginFunctions) => void`
 - `onChange: (EditorState) => EditorState`
-- `willUnMount: (PluginFunctions) => void`
+- `willUnmount: (PluginFunctions) => void`
 - `decorators: Array<Decorator> => void`
 - `getAccessibilityProps: () => { ariaHasPopup: string, ariaExpanded: string }`
 
@@ -99,7 +101,7 @@ Allows to initialize a plugin once the editor becomes mounted.
 
 Allows a plugin to modify the state at the latest moment before the onChange callback of the Draft.js Editor is fired.
 
-### `willUnMount`
+### `willUnmount`
 
 Usually used to clean up.
 
