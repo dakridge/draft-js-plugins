@@ -6,14 +6,6 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 
 [![Build Status](https://travis-ci.org/draft-js-plugins/draft-js-plugins.svg?branch=master)](https://travis-ci.org/draft-js-plugins/draft-js-plugins)
 
-## Important Note
-
-We are currently preparing for a 2.0 release. The `master` branch contains these features. All the packages are already published with a beta tag. Install it via `$ npm install <plugin>@2.0.0-rc8 --save`.
-
-## Roadmap
-
-In case you are interested in helping [Issue #329](https://github.com/draft-js-plugins/draft-js-plugins/issues/329) contains a roadmap of what's coming in 2.0 and beyond.
-
 ## Available Plugins (incl. Docs)
 
 - [Alignment](https://www.draft-js-plugins.com/plugin/alignment)
@@ -51,6 +43,8 @@ In case you are interested in helping [Issue #329](https://github.com/draft-js-p
 - [Modal](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
 - [Sidebar](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
 - [Toolbar](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
+- [Divider](https://github.com/simsim0709/draft-js-plugins/tree/master/draft-js-divider-plugin) by [simsim0709](https://github.com/simsim0709)
+- [Code Editor](https://github.com/withspectrum/draft-js-code-editor-plugin) by [Max Stroiber/Spectrum](https://github.com/withspectrum)
 
 ## Live Example & Documentation
 
@@ -62,12 +56,6 @@ First, install the editor with `npm`:
 
 ```
 $ npm install draft-js-plugins-editor --save
-```
-
-To try out the beta version of 2.0.0 run
-
-```
-$ npm install draft-js-plugins-editor@2.0.0-rc8 --save
 ```
 
 Then import the editor somewhere in your code and you're ready to go!
